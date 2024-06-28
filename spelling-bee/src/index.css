@@ -1,0 +1,605 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: Montserrat, "Open Sans", sans-serif;
+}
+
+.title {
+  margin: 0;
+}
+
+.date,
+.editor {
+  font-size: 0.875rem;
+  margin-block-start: 0.25rem;
+  margin-block-end: 0.25rem;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+  height: 600px;
+}
+
+.words {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.app-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs {
+  width: 80vw;
+  max-width: 290px;
+}
+
+.center {
+  width: 90%;
+  margin: 25px auto;
+}
+
+.honeycomb {
+  position: relative;
+  height: 275px;
+}
+
+.cell {
+  position: absolute;
+  top: 33.3333333333%;
+  left: 30%;
+  width: 40%;
+  height: 33.3333333333%;
+}
+
+.cell:nth-child(1) {
+  transform: translate(0, 0);
+}
+
+.cell:nth-child(2) {
+  transform: translate(-75%, -50%);
+}
+
+.cell:nth-child(3) {
+  transform: translate(0, -100%);
+}
+
+.cell:nth-child(4) {
+  transform: translate(75%, -50%);
+}
+
+.cell:nth-child(5) {
+  transform: translate(75%, 50%);
+}
+
+.cell:nth-child(6) {
+  transform: translate(0, 100%);
+}
+
+.cell:nth-child(7) {
+  transform: translate(-75%, 50%);
+}
+
+.cell-letter {
+  font-weight: 700;
+  font-size: 1.875em;
+  text-anchor: middle;
+  text-transform: uppercase;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.center-letter .cell-fill {
+  cursor: pointer;
+  fill: #f7da21;
+  transition: all 100ms;
+}
+
+.outer-letter .cell-fill {
+  cursor: pointer;
+  fill: #e6e6e6;
+  transition: all 100ms;
+}
+
+.buttons {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  width: 5.5em;
+  min-width: 5.5em;
+  height: 3em;
+  background-color: #fff;
+  font-size: 1em;
+  margin: 0 8px;
+  color: #333;
+  border: 1px solid #dcdcdc;
+  border-radius: 2.5em;
+  letter-spacing: 0.01em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  margin-block-start: 1rem;
+}
+
+.custom-cursor {
+  caret-color: #ffcf24;
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  outline: none;
+  /* animation: blink 1s step-start infinite; */
+}
+
+.central-letter {
+  color: #ffcf24;
+}
+
+@keyframes blink-caret {
+  50% {
+    caret-color: transparent; /* Hide the caret */
+  }
+  50% {
+    caret-color: #ffcf24; /* Show the caret */
+  }
+}
+
+/* Apply blink animation only to the caret */
+.custom-cursor:focus {
+  animation: blink-caret 1s step-end infinite;
+}
+
+.outeral-letter,
+.central-letter {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+/* Header Container */
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-bottom: 2px solid #e2e2e2;
+}
+
+/* Title Styling */
+.title {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Date Styling */
+.date {
+  font-size: 1.2em;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+/* Editor Styling */
+.editor {
+  font-size: 1em;
+  color: #999;
+  font-style: italic;
+}
+
+/* Highlight Text */
+.title,
+.date,
+.editor {
+  background: linear-gradient(to top, #ffcf24 0%, #ffcf24 50%, transparent 50%);
+  display: inline-block;
+  padding: 5px;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Arial, sans-serif";
+  font-size: 32px;
+  margin: 20px 0;
+  padding: 10px 20px;
+  background: linear-gradient(to right, #4caf50, #81c784);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  font-weight: bold;
+}
+
+.score-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* pushing words container to a bit right */
+.words-container {
+  margin-left: 70px;
+}
+
+/* SUCCESS AND ERROR MESSAGES */
+
+.messages-container {
+  position: absolute;
+  top: 2px;
+  left: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.found-message {
+  width: 130px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 4px 8px 4px 8px;
+  border-radius: 10px;
+}
+
+.unfound {
+  display: none;
+}
+
+.word-not-found,
+.missing-central-letter,
+.show-empty-error,
+.successMessage {
+  min-width: 130px;
+  color: white;
+  text-align: center;
+  padding: 4px 8px 4px 8px;
+  border-radius: 10px;
+}
+
+.word-not-found,
+.missing-central-letter,
+.show-empty-error {
+  background-color: black;
+}
+
+.successMessage {
+  background-color: limegreen;
+}
+
+.hiddenSuccess,
+.hide-empty-error,
+.hide-missing-message {
+  display: none;
+}
+
+.not-found-message {
+  display: none;
+}
+
+/* WORDS LIST THAT ARE ALREADY FOUND*/
+
+.words-list-container {
+  height: 600px;
+  width: 400px;
+  border: 1px solid grey;
+  overflow-y: auto; /* Add vertical scrollbar if content overflows */
+}
+
+.words-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.word {
+  width: 100px;
+  list-style-type: none;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ccc; /* Grey line below each word */
+}
+
+/* Additional hover effect for list items */
+.word:hover {
+  background-color: #e0e7ff; /* Slightly different color on hover */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.num-of-words-in-box {
+  margin-left: 37px;
+}
+
+/* LEVELS */
+
+.levels-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-left: 6px;
+}
+
+.progress-container::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  height: 4px;
+  background-color: #ddd;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.dot,
+.square {
+  height: 8px;
+  width: 8px;
+  background-color: #bbb;
+  margin: 0 24px;
+  z-index: 2; /* Ensure dots and square are above the progress bar line */
+  color: black;
+  font-size: 15px;
+  text-align: center;
+}
+
+.dot {
+  border-radius: 50%;
+}
+
+.dot:first-child {
+  margin-left: 0; /* Ensure the first dot is at the start */
+}
+
+.dot + .dot,
+.dot + .square {
+  margin-left: 25px; /* Ensure spacing between dots */
+}
+
+.square {
+  margin-right: -18px; /* Ensure the square is at the end */
+}
+
+.dot.active {
+  background-color: rgb(247, 218, 33);
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+}
+
+.filled {
+  background-color: rgb(247, 218, 33);
+}
+
+.dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ranking */
+.ranking {
+  display: inline-block;
+  color: #13141c;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: left;
+  padding: 6px 0 0;
+  width: 100px;
+}
+
+.current-rank {
+  font-weight: 700;
+}
+
+.required-score-to-next-rank {
+  color: #5e6176;
+  font-size: 12px;
+}
+
+/* CORRECT GUESSES SECTION ON SMALL DEVICES */
+
+.correct-guesses-section {
+  display: none;
+}
+
+/* Correct Guess Open List Start */
+.guess-words-open-list {
+  z-index: 2;
+  background-color: #eef2f8;
+  min-width: 480px;
+  min-height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+/* common style for both to take them out of normal box flow */
+.guess-words-close-list,
+.guess-words-open-list {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  z-index: 2;
+}
+
+/* computed style for the words-list on smaller devices 
+to appear in the middle and increase height downward only */
+.guess-words-open-list {
+  transform: translateX(-50%);
+  left: 52%;
+  top: 17%;
+}
+
+.guess-words-open-list ul {
+  padding: 12px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-top: 30px;
+  margin-left: 5px;
+  /* by default it is row */
+  /* grid-auto-flow: row;  */
+}
+
+.open-list-svg {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  opacity: 0.5;
+}
+
+.open-list-svg:hover {
+  right: 10px;
+  top: 10px;
+  opacity: 1;
+}
+/* Correct Guess Open List End */
+
+.guessed-word {
+  list-style-type: none;
+  margin-bottom: 15px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Correct Guess Close List Start */
+.guess-words-close-list {
+  background-color: #eef2f8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 460px;
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.guess-words-close-list {
+  top: 20%;
+}
+
+.guess-words-close-list ul {
+  padding-left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.guess-words-close-list ul li {
+  list-style-type: none;
+  margin-left: 5px;
+}
+/* Correct Guess Close List End */
+
+/* MEDIA QUEREIS */
+
+@media (width <=1100px) {
+  .words-list-container {
+    width: 350px;
+  }
+  .word {
+    width: 90px;
+  }
+
+  .dot + .dot,
+  .dot + .square {
+    margin-left: 20px; /* Ensure spacing between dots */
+  }
+
+  @media (width <=1050px) {
+    .words-list-container {
+      width: 330px;
+    }
+  }
+
+  @media (width <= 1000px) {
+    .words-list-container {
+      width: 300px;
+      height: 550px;
+    }
+    .dot + .dot,
+    .dot + .square {
+      margin-left: 20px; /* Ensure spacing between dots */
+    }
+    .progress-container {
+      margin-left: 0;
+    }
+  }
+}
+
+@media (width <= 930px) {
+  .words-container {
+    display: none;
+  }
+  .correct-guesses-section {
+    display: block;
+  }
+
+  /* setting margin-top to input text to provide some room for words list */
+  .words {
+    margin-top: 45px;
+  }
+}
+
+@media (width <= 645px) {
+  .dot + .dot,
+  .dot + .square {
+    margin-left: 15px; /* Ensure spacing between dots */
+  }
+  @media (width <= 550px) {
+    .dot + .dot,
+    .dot + .square {
+      margin-left: 10px; /* Ensure spacing between dots */
+    }
+  }
+
+  @media (width <= 430px) {
+    .dot + .dot,
+    .dot + .square {
+      margin-left: 5px; /* Ensure spacing between dots */
+    }
+
+    .progress-container {
+      margin-left: 0;
+    }
+  }
+}
